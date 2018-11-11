@@ -16,7 +16,7 @@ ENV GOROOT=/usr/local/go
 ENV PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 RUN apt-get update && apt-get install -y wget tar gnupg2
 RUN wget -O go.tar.gz https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz && \
-    tar -xvf go.tar.gz && mv go /usr/local
+    tar -xf go.tar.gz && mv go /usr/local
 
 RUN echo "deb http://download.opensuse.org/repositories/network:/messaging:/zeromq:/release-stable/Debian_9.0/ ./" >> /etc/apt/sources.list
 RUN wget https://download.opensuse.org/repositories/network:/messaging:/zeromq:/release-stable/Debian_9.0/Release.key -O- | sudo apt-key add && \
