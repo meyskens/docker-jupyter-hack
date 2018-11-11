@@ -63,6 +63,8 @@ RUN git clone https://github.com/SpencerPark/IJava.git && \
     chmod u+x gradlew && ./gradlew installKernel &&\
     mv /home/jovyan/.local/share/jupyter/kernels/java/* $CONDA_DIR/share/jupyter/kernels/java/
 
+RUN rm -fr /home/jovyan/.local
+
 ## Verify install
 WORKDIR /home/$NB_USER
 USER $NB_USER
