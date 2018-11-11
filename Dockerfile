@@ -33,12 +33,12 @@ RUN apt-get install -y libtool libffi-dev ruby ruby-dev make git autoconf pkg-co
     cd czmq && \
     ./autogen.sh && ./configure && sudo make && sudo make install
 RUN gem install cztop iruby && \
-    iruby register --force
+    IPYTHONDIR=$CONDA_DIR/share/ iruby register --force
 
 ## Javascript notebook
 RUN apt-get install -y nodejs npm && \
     sudo npm install -g ijavascript
-RUN ijsinstall
+RUN ijsinstall --install=global
 
 ## PHP notebook
 RUN apt-get install -y php7.2 php7.2-zmq wget
@@ -60,7 +60,8 @@ ENV PATH=/usr/lib/jvm/java-11-openjdk-amd64/bin/:$PATH
 RUN java -version
 RUN git clone https://github.com/SpencerPark/IJava.git && \
     cd IJava/ && \
-    chmod u+x gradlew && ./gradlew installKernel
+    chmod u+x gradlew && ./gradlew installKernel &&\
+    mv /home/jovyan/.local/share/jupyter/kernels/java/* $CONDA_DIR/share/jupyter/kernels/java/
 
 ## Verify install
 WORKDIR /home/$NB_USER
