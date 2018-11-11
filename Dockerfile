@@ -57,7 +57,7 @@ RUN apt-get -y install software-properties-common && \
     echo oracle-java9-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections && \
     apt-get -y install oracle-java11-installer oracle-java11-set-default openjdk-11-jdk
 ENV PATH=/usr/lib/jvm/java-11-openjdk-amd64/bin/:$PATH
-RUN java -version
+RUN mkdir $CONDA_DIR/share/jupyter/kernels/java/
 RUN git clone https://github.com/SpencerPark/IJava.git && \
     cd IJava/ && \
     chmod u+x gradlew && ./gradlew installKernel &&\
