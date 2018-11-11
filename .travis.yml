@@ -1,0 +1,12 @@
+sudo: required
+services: docker
+language: bash
+env:
+    global:
+        - DOCKER_REPO=meyskens/jupyter-hack
+
+script:
+    - docker build -t $DOCKER_REPO ./
+after_success:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker push $DOCKER_REPO
