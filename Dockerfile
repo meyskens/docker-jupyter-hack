@@ -33,7 +33,7 @@ RUN apt-get install -y libtool libffi-dev ruby ruby-dev make git autoconf pkg-co
     cd czmq && \
     ./autogen.sh && ./configure && sudo make && sudo make install
 RUN gem install cztop iruby && \
-    iruby register $CONDA_DIR/share/jupyter/kernels/iruby --ipython-dir=/opt/conda/share/jupyter/kernels/python3 --force
+    IPYTHONDIR=$CONDA_DIR/share/jupyter/ iruby register --force
 
 ## Javascript notebook
 RUN apt-get install -y nodejs npm && \
