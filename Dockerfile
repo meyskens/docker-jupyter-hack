@@ -63,7 +63,7 @@ ENV PATH=/usr/lib/jvm/java-11-openjdk-amd64/bin/:$PATH
 #    chmod u+x gradlew && ./gradlew installKernel &&\
 #    mv /home/jovyan/.local/share/jupyter/kernels/java/* $CONDA_DIR/share/jupyter/kernels/java/
 RUN conda config --add channels conda-forge
-RUN conda create --name java_env scijava-jupyter-kernel
+RUN conda create --yes --name java_env scijava-jupyter-kernel
 RUN source activate java_env
 
 RUN rm -fr /home/jovyan/.local
